@@ -1,1 +1,1 @@
-# MathVoyage
+# MathVoyage: Journey Through Numbers
