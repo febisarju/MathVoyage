@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mathematics Parallax Website</title>
+  <style>
+    /* General Styles */
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      color: white;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    h1, h2 {
+      font-family: 'Georgia', serif;
+    }
+
+    h1 {
+      font-size: 4rem;
+      margin: 0;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1.2rem;
+      animation: fadeIn 3s ease-in-out;
+    }
+
+    ul {
+      text-align: left;
+      font-size: 1.1rem;
+      list-style-type: square;
+      padding-left: 20px;
+    }
+
+    ul li {
+      margin-bottom: 10px;
+    }
+
+    /* Header Section */
+    header {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      background-image: url('https://t4.ftcdn.net/jpg/05/73/63/85/360_F_573638563_s5X1Df6HWOe2HK1uvusaoWyuHQbye8lm.jpg'); /* Replace with your image URL */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5); /* Adds a dark overlay for better text visibility */
+    }
+
+    header h1, header p {
+      position: relative;
+      z-index: 1;
+    }
+
+    header p {
+      font-size: 1.5rem;
+      margin-top: 10px;
+    }
+
+    /* Parallax Sections */
+    .parallax-section {
+      height: 100vh;
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .parallax-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      border-radius: 15px;
+      backdrop-filter: blur(10px);
+      animation: slideUp 1.5s ease-in-out;
+      max-width: 800px;
+      margin: 20px;
+    }
+
+    .content:hover {
+      transform: scale(1.05);
+      transition: transform 0.3s ease;
+    }
+
+    /* Section-Specific Backgrounds */
+    #section1 {
+      background-image: url('https://images.unsplash.com/photo-1509228468518-180dd4864904?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+    }
+
+    #section2 {
+      background-image: url('https://www.thoughtco.com/thmb/Zu5t9SouRC_ucLrvgDnlU3xslQ4=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/confused-girl-in-front-of-a-blackboard-full-of-formulas--947690882-5af49088eb97de003d93de23.jpg');
+    }
+
+    #section3 {
+      background-image: url('https://t4.ftcdn.net/jpg/10/46/21/53/360_F_1046215380_TGTQ7g3KQJmiW9ysBZL0jDK6mKiAwjeS.jpg');
+    }
+
+    #section4 {
+      background-image: url('https://i0.wp.com/www.sciencenews.org/wp-content/uploads/2022/01/011522_reviews_Bakhshali_manuscript.jpg?fit=1030%2C580&ssl=1');
+    }
+
+    #section5 {
+      background-image: url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+    }
+
+    #section6 {
+      background-image: url('https://www.mygreatlearning.com/blog/wp-content/uploads/2017/09/Big-Career-Dream-with-data-science-and-engineering-3.jpg');
+    }
+
+    /* Calculator Section */
+    #calculator {
+      background: linear-gradient(135deg, #2c3e50, #34495e);
+      padding: 50px 20px;
+    }
+
+    .calculator {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 20px;
+      border-radius: 15px;
+      display: inline-block;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+      width: 300px; /* Fixed width for better alignment */
+    }
+
+    .calculator input {
+      width: 100%;
+      padding: 15px;
+      font-size: 1.5rem;
+      text-align: right;
+      border: none;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+    }
+
+    .calculator .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    .calculator button {
+      padding: 20px;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .calculator button:hover {
+      background: rgba(255, 255, 255, 0.4);
+    }
+
+    .calculator button.operator {
+      background: #3498db;
+    }
+
+    .calculator button.operator:hover {
+      background: #2980b9;
+    }
+
+    /* Footer */
+    footer {
+      padding: 20px;
+      background: #1e3c72;
+      color: white;
+      font-size: 1rem;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      h2 {
+        font-size: 2rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+
+      .content {
+        padding: 20px;
+      }
+
+      .calculator {
+        width: 90%; /* Adjust width for smaller screens */
+      }
+
+      .calculator button {
+        padding: 15px;
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header Section -->
+  <header>
+    <h1>Welcome to the World of Mathematics</h1>
+    <p>Exploring the beauty of numbers, shapes, and patterns</p>
+  </header>
+
+  <!-- Geometry Section -->
+  <section class="parallax-section" id="section1">
+    <div class="content">
+      <h2>Geometry</h2>
+      <p>
+        Geometry is the branch of mathematics that deals with shapes, sizes, and properties of space. 
+        From the simplicity of a circle to the complexity of fractals, geometry is everywhere in nature 
+        and the universe. Learn about angles, triangles, circles, and more!
+      </p>
+    </div>
+  </section>
+
+  <!-- Algebra Section -->
+  <section class="parallax-section" id="section2">
+    <div class="content">
+      <h2>Algebra</h2>
+      <p>
+        Algebra is the study of mathematical symbols and the rules for manipulating these symbols. 
+        It is a unifying thread of almost all of mathematics. From solving equations to understanding 
+        variables, algebra is the foundation of advanced mathematics.
+      </p>
+      <div class="calculator">
+        <input type="text" id="display" disabled>
+        <div class="buttons">
+          <button onclick="clearDisplay()">C</button>
+          <button onclick="appendToDisplay('/')">/</button>
+          <button onclick="appendToDisplay('*')">*</button>
+          <button onclick="deleteLast()">DEL</button>
+          <button onclick="appendToDisplay('7')">7</button>
+          <button onclick="appendToDisplay('8')">8</button>
+          <button onclick="appendToDisplay('9')">9</button>
+          <button onclick="appendToDisplay('-')">-</button>
+          <button onclick="appendToDisplay('4')">4</button>
+          <button onclick="appendToDisplay('5')">5</button>
+          <button onclick="appendToDisplay('6')">6</button>
+          <button onclick="appendToDisplay('+')">+</button>
+          <button onclick="appendToDisplay('1')">1</button>
+          <button onclick="appendToDisplay('2')">2</button>
+          <button onclick="appendToDisplay('3')">3</button>
+          <button onclick="calculateResult()" class="operator">=</button>
+          <button onclick="appendToDisplay('0')">0</button>
+          <button onclick="appendToDisplay('.')">.</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Calculus Section -->
+  <section class="parallax-section" id="section3">
+    <div class="content">
+      <h2>Calculus</h2>
+      <p>
+        Calculus is the mathematical study of continuous change. It has two major branches: differential 
+        calculus (concerning rates of change and slopes of curves) and integral calculus (concerning 
+        accumulation of quantities and areas under curves). Calculus is essential in science, engineering, 
+        and economics.
+      </p>
+    </div>
+  </section>
+
+  <!-- Mathematics History Section -->
+  <section class="parallax-section" id="section4">
+    <div class="content">
+      <h2>Mathematics History</h2>
+      <p>
+        Mathematics has a rich history dating back to ancient civilizations. Here are some key milestones:
+      </p>
+      <ul>
+        <li><strong>3000 BCE</strong>: Babylonians develop the first number system.</li>
+        <li><strong>1650 BCE</strong>: Egyptians use geometry for land measurement.</li>
+        <li><strong>300 BCE</strong>: Euclid writes "Elements," the foundation of geometry.</li>
+        <li><strong>800 CE</strong>: Al-Khwarizmi introduces algebra.</li>
+        <li><strong>17th Century</strong>: Newton and Leibniz independently develop calculus.</li>
+        <li><strong>19th Century</strong>: Non-Euclidean geometry emerges, challenging Euclid's postulates.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Mathematics Present and Future Section -->
+  <section class="parallax-section" id="section5">
+    <div class="content">
+      <h2>Mathematics Present and Future</h2>
+      <p>
+        Mathematics continues to evolve and shape the modern world. Here are some key developments:
+      </p>
+      <ul>
+        <li><strong>20th Century</strong>: Development of quantum mechanics and relativity relies on advanced mathematics.</li>
+        <li><strong>1977</strong>: RSA algorithm revolutionizes cryptography.</li>
+        <li><strong>21st Century</strong>: Machine learning and AI rely on linear algebra and calculus.</li>
+        <li><strong>Future</strong>: Mathematics will play a key role in solving global challenges like climate change and space exploration.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Data Analytics Section -->
+  <section class="parallax-section" id="section6">
+    <div class="content">
+      <h2>Mathematics and Data Analytics</h2>
+      <p>
+        Data analytics is deeply rooted in mathematics. Here are some key connections:
+      </p>
+      <ul>
+        <li><strong>1800s</strong>: Statistical methods are developed for data analysis.</li>
+        <li><strong>1950s</strong>: Linear algebra becomes essential for computer algorithms.</li>
+        <li><strong>1990s</strong>: Data mining techniques rely on probability theory.</li>
+        <li><strong>2010s</strong>: Big data and machine learning revolutionize data analytics.</li>
+        <li><strong>Future</strong>: Mathematics will drive advancements in AI and predictive analytics.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>Created by Febi</p>
+  </footer>
+
+  <script>
+    // Calculator Functions
+    function appendToDisplay(value) {
+      document.getElementById('display').value += value;
+    }
+
+    function clearDisplay() {
+      document.getElementById('display').value = '';
+    }
+
+    function deleteLast() {
+      let display = document.getElementById('display');
+      display.value = display.value.slice(0, -1);
+    }
+
+    function calculateResult() {
+      try {
+        document.getElementById('display').value = eval(document.getElementById('display').value);
+      } catch (error) {
+        document.getElementById('display').value = 'Error';
+      }
+    }
+  </script>
+</body>
+</html>
