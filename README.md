@@ -15,7 +15,3 @@ Technologies Used:
 
 Contact:
 - Github- https://github.com/febisarju
-
-
-
-![Screenshot 2025-03-10 224610](https://github.com/user-attachments/assets/2f61fb5e-6cbd-48e1-bea4-fa21bc78c7e5)
